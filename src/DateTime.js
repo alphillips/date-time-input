@@ -4,7 +4,8 @@ import TimePicker from 'material-ui/TimePicker/TimePickerDialog';
 import moment from 'moment';
 import ClearIcon from 'material-ui/svg-icons/content/clear';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import { TextField, IconButton } from 'material-ui';
+import Input from '@react-ag-components/input'
+import { IconButton } from 'material-ui';
 
 const styles = {
   container: {
@@ -19,12 +20,12 @@ class DateTime extends React.Component {
 	}
 
   static defaultProps = {
-    customValue: undefined,
+    value: undefined,
     okLabel: 'OK',
     minDate: undefined,
     maxDate: undefined,
     name: 'datepicker',
-    format: 'MMM DD, YYYY hh:mm A',
+    format: 'DD MMM YYYY hh:mm A',
     timePickerDelay: 150,
     className: 'datetime-container',
     textFieldClassName: 'datetime-input',
@@ -66,8 +67,8 @@ class DateTime extends React.Component {
   }
 
   // eslint-disable-next-line
-  getInitialTime = () => this.props.customValue
-    ? moment(this.props.customValue)
+  getInitialTime = () => this.props.value
+    ? moment(this.props.value)
     : null
 
   state = {
@@ -75,7 +76,7 @@ class DateTime extends React.Component {
   }
 
   componentDidUpdate = (prevProps) => {
-    if (prevProps.customValue !== this.props.customValue) {
+    if (prevProps.value !== this.props.value) {
       this.setState({ dateTime: this.getInitialTime() });
     }
   }
@@ -174,21 +175,21 @@ class DateTime extends React.Component {
       onDateSelected,
       onTimeSelected,
       disabled,
-      customValue,
+      value,
       ...other
     } = this.props;
 
     return (
 			<MuiThemeProvider>
 	      <div style={{ ...styles.container, style }} className={this.props.className}>
-	        <TextField
+	        <Input
 	          onFocus={this.handleFocus}
 	          className={textFieldClassName}
 	          onClick={this.openDatePicker}
 	          value={this.getDisplayTime()}
 	          style={{ ...styles.textField, ...textFieldStyle }}
 	          disabled={disabled}
-	          {...other}
+						id="datetime"
 	        />
 
 	        {

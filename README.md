@@ -25,12 +25,8 @@ import DateTimePicker from '@react-ag-components/datetime'
 
 <DateTimePicker
   value={this.state.startDateTime}
-  customValue={this.state.startDateTime}
   onChange={this.onChange('startDateTime')}
-  DatePicker={DatePickerDialog}
-  TimePicker={TimePickerDialog}
-  floatingLabelText="Start date time"
-  format={'DD MMM YYYY hh:mm A'}
+  label="Start date time"
 />
 ```
 
@@ -39,9 +35,9 @@ import DateTimePicker from '@react-ag-components/datetime'
 | Property    | Default       | Description                                |
 | --------    |:-------------:|-------------------------------------------:|
 | format        |     'MMM DD, YYYY hh:mm A'            |                 moment date format                        |
-| customValue       |    datetime now    |      |
-| onChange       |      |   function   |
-| floatingLabelText       |    label   |      |
+| customValue       |        |  if not used, today's date and time of now    |
+| onChange       |      |      |
+| floatingLabelText       |       |      |
 
 
 

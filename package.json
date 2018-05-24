@@ -23,7 +23,8 @@
   },
   "dependencies": {
     "material-ui": "^0.19.4",
-    "moment": "^2.20.1"
+    "moment": "^2.20.1",
+    "@react-ag-components/input": "latest"
   },
   "peerDependencies": {
     "react": "15.x"

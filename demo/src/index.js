@@ -29,17 +29,17 @@ class Demo extends Component {
         <h2>Basic DateTime</h2>
 
         <DateTimePicker
-          customValue={this.state.startDateTime}
+          value={this.state.startDateTime}
           onChange={this.onChange('startDateTime')}
-          floatingLabelText="Start date time"
+          label="Start date time"
         />
 
       <h2>Custom Date Time Format</h2>
 
         <DateTimePicker
-          customValue={this.state.startDateTimeWithData}
+          value={this.state.startDateTimeWithData}
           onChange={this.onChange('startDateTimeWithData')}
-          floatingLabelText="Start date time"
+          label="Start date time"
           format='DD MMMM YYYY hh:mm A'
         />
       </div>
