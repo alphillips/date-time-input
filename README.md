@@ -17,7 +17,7 @@ npm i @react-ag-components/datetime --save
 ```
 ### Use in your project
 ```
-import Help from '@react-ag-components/datetime'
+import DateTimePicker from '@react-ag-components/datetime'
 ```
 
 ```
