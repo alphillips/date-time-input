@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
+import {TextField} from 'material-ui'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+
 
 import DateTimePicker from '../../src'
 
@@ -32,9 +35,10 @@ class Demo extends Component {
           value={this.state.startDateTime}
           onChange={this.onChange('startDateTime')}
           label="Start date time"
+          id="basic-start-date"
         />
 
-      <h2>Custom Date Time Format</h2>
+        <h2>Custom Date Time Format</h2>
 
         <DateTimePicker
           value={this.state.startDateTimeWithData}

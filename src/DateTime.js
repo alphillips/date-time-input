@@ -3,9 +3,8 @@ import DatePicker from 'material-ui/DatePicker/DatePickerDialog'
 import TimePicker from 'material-ui/TimePicker/TimePickerDialog';
 import moment from 'moment';
 import ClearIcon from 'material-ui/svg-icons/content/clear';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-// import Input from '@react-ag-components/input'
 import { TextField, IconButton } from 'material-ui';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 const styles = {
   container: {
@@ -26,6 +25,7 @@ class DateTime extends React.Component {
   static defaultProps = {
     value: undefined,
 		label:undefined,
+    id:"datetime"+(Math.floor(Math.random()).toString()),
     okLabel: 'OK',
     minDate: undefined,
     maxDate: undefined,
@@ -153,14 +153,13 @@ class DateTime extends React.Component {
   };
 
   clearState = () => {
-		console.log("this clear state")
     this.setState({ dateTime: null });
     this.props.onChange(null);
   }
 
   render() {
     const {
-      clearIcon, maxDate, minDate, timeFormat,
+      clearIcon, maxDate, minDate, timeFormat,id,required,
       firstDayOfWeek, textFieldClassName, className, autoOkDatePicker,
       datePickerMode, disableYearSelection, shouldDisableDate,
       hideCalendarDate, openToYearSelection, timePickerBodyStyle,
@@ -182,8 +181,8 @@ class DateTime extends React.Component {
     } = this.props;
 
     return (
-			<MuiThemeProvider>
 	      <div style={{ ...styles.container, style }} className={ className }>
+        <MuiThemeProvider>
 					<TextField
  	          onFocus={this.handleFocus}
  	          className={textFieldClassName}
@@ -192,9 +191,11 @@ class DateTime extends React.Component {
 						floatingLabelText={this.props.label}
  	          style={{ ...styles.textField, ...textFieldStyle }}
  	          disabled={disabled}
+            id={id}
  	          {...other}
  	        />
-
+        </MuiThemeProvider>
+        <MuiThemeProvider>
 	        {
 	          clearIcon
 	            ? <IconButton
@@ -205,7 +206,8 @@ class DateTime extends React.Component {
 	            </IconButton>
 	            : null
 	        }
-
+        </MuiThemeProvider>
+        <MuiThemeProvider>
 	        <DatePicker
 	          ref={(node) => { this.datePicker = node; }}
 	          initialDate={this.getDateOrCurrentTime()}
@@ -225,7 +227,8 @@ class DateTime extends React.Component {
 	          DateTimeFormat = { DateTimeFormat }
 	          locale = { locale }
 	        />
-
+        </MuiThemeProvider>
+        <MuiThemeProvider>
 	        <TimePicker
 	          ref={(node) => { this.timePicker = node; }}
 	          initialTime={this.getDateOrCurrentTime()}
@@ -239,8 +242,8 @@ class DateTime extends React.Component {
 	          minutesStep={minutesStep}
 	          onDismiss={onTimePickerDismiss}
 	        />
+        </MuiThemeProvider>
 	      </div>
-			</MuiThemeProvider>
     );
   }
 }
