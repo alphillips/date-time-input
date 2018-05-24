@@ -105,6 +105,7 @@ class DateTime extends React.Component {
 
   getDisplayTime = () => {
     const { dateTime } = this.state;
+		const format = this.props.format ? this.props.format : defaultProps.format
     const defaultTime = this.props.showCurrentDateByDefault
       ? moment().format(this.props.format)
       : this.props.placeholder || '';

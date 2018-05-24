@@ -40,7 +40,6 @@ class Demo extends Component {
           value={this.state.startDateTimeWithData}
           onChange={this.onChange('startDateTimeWithData')}
           label="Start date time"
-          format='DD MMMM YYYY hh:mm A'
         />
       </div>
     )

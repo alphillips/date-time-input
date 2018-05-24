@@ -34,7 +34,7 @@ import DateTimePicker from '@react-ag-components/datetime'
 
 | Property    | Default       | Description                                |
 | --------    |:-------------:|-------------------------------------------:|
-| format        |     'MMM DD, YYYY hh:mm A'            |                 moment date format                        |
+| format        |     'DD MMMM YYYY hh:mm A'            |                 moment date format                        |
 | customValue       |        |  if not used, today's date and time of now    |
 | onChange       |      |      |
 | floatingLabelText       |       |      |
