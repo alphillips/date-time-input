@@ -1,28 +1,8 @@
-$panel-border: #E7E7E7;
-$panel-text: darken($panel-border, 60%);
-
-.topic{
-  display: block;
-  margin-bottom: 1em;
-  padding: 10px;
-  background-color: transparent;
-  color: $panel-text;
-  position: relative;
-  margin-top: 10px;
-  border: 2px solid $panel-border;
-  border-radius: 3px;
-}
-
-.buttonControl-group-container {
-  display: inline;
-
-  .buttonControl-group {
-    display: inline;
-    margin-left: 5px;
-
-    a {
-      cursor: pointer;
-    }
+.datetime-container {
+  .datetime-input {
+    width: 90%!important;
   }
-
+  button {
+    width: 5%!important;
+  }
 }

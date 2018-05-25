@@ -5,12 +5,10 @@ import moment from 'moment';
 import ClearIcon from 'material-ui/svg-icons/content/clear';
 import { TextField, IconButton } from 'material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import './datetime.css'
+
 
 const styles = {
-  container: {
-    display: 'flex',
-    alignItems: 'flex-end',
-  },
 };
 
 class DateTime extends React.Component {
