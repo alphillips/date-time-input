@@ -50,7 +50,7 @@ class DateTime extends React.Component {
     minutesStep: 1,
     showCurrentDateByDefault: false,
     returnMomentDate: false,
-    clearIcon: <ClearIcon />,
+    clearIcon: <ClearIcon color="#999999" />,
 
     // styles
     clearIconStyle: { },
