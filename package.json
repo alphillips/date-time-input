@@ -1,6 +1,6 @@
 {
   "name": "@react-ag-components/datetime",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "React Date Time component",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -23,7 +23,8 @@
   },
   "dependencies": {
     "material-ui": "^0.19.4",
-    "moment": "^2.20.1"
+    "moment": "^2.20.1",
+    "@react-ag-components/input": "latest"
   },
   "peerDependencies": {
     "react": "15.x"
