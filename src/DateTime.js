@@ -3,7 +3,7 @@ import DatePicker from 'material-ui/DatePicker/DatePickerDialog'
 import TimePicker from 'material-ui/TimePicker/TimePickerDialog';
 import moment from 'moment';
 import ClearIcon from 'material-ui/svg-icons/content/clear';
-import { TextField,IconButton } from 'material-ui';
+import { IconButton } from 'material-ui';
 import Input from '@react-ag-components/input'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import './datetime.css'
@@ -104,7 +104,7 @@ class DateTime extends React.Component {
     : null)
 
   getDisplayTime = () => {
-    let {dateTime}  = this.state;
+    const {dateTime}  = this.state;
 		const format = this.props.format ? this.props.format : defaultProps.format
     const defaultTime = this.props.showCurrentDateByDefault
       ? moment().format(this.props.format)
@@ -122,7 +122,7 @@ class DateTime extends React.Component {
 
   selectDate = (date) => {
     const currentDateTime = moment(this.getDateOrCurrentTime());
-    let dateTime = moment(date)
+    const dateTime = moment(date)
       .set('hours', currentDateTime.hours()) // fill time unites
       .set('minutes', currentDateTime.minutes());
 
@@ -134,7 +134,7 @@ class DateTime extends React.Component {
   }
 
   selectTime = (date) => {
-    let { dateTime } = this.state;
+    const { dateTime } = this.state;
 
     dateTime.hours(date.getHours());
     dateTime.minutes(date.getMinutes());
