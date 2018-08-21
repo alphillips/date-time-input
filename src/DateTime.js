@@ -110,11 +110,14 @@ class DateTime extends React.Component {
   }
 
   selectDate = (date) => {
-    const currentDateTime = moment(this.getDateOrCurrentTime());
-    const dateTime = moment(date)
+		const { dateTime } = this.state;
 
-		this.props.onChange(moment(date).toDate());
-		this.setState({ dateTime });
+    let dateTimeVar = moment(date)
+			.set('hours', moment(dateTime).hours()) // fill time unites
+      .set('minutes', moment(dateTime).minutes());
+
+		this.props.onChange(moment(dateTimeVar).toDate());
+		this.setState({ dateTime:dateTimeVar });
 
     // show timepicker
     setTimeout(() => this.timePicker.show(), this.props.timePickerDelay);
