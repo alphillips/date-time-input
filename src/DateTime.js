@@ -91,11 +91,11 @@ class DateTime extends React.Component {
 
     return this.props.returnMomentDate
       ? this.state.dateTime
-      : this.state.dateTime.toDate();
+      : moment(this.state.dateTime).toDate();
   }
 
   getDateOrCurrentTime = () => (this.state.dateTime
-    ? this.state.dateTime.toDate()
+    ? moment(this.state.dateTime).toDate()
     : new Date())
 
   getDateOrNull = time => (time
@@ -133,10 +133,12 @@ class DateTime extends React.Component {
   }
 
   selectTime = (date) => {
-    const { dateTime } = this.state;
+    let { dateTime } = this.state;
 
     dateTime.hours(date.getHours());
     dateTime.minutes(date.getMinutes());
+
+		dateTime = moment(dateTime).format('YYYY-MM-DDThh:mm:ss')
 
     this.setState({ dateTime });
     this.props.onTimeSelected(this.getDate());
