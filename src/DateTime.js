@@ -67,7 +67,7 @@ class DateTime extends React.Component {
     onDateSelected: () => { },
     onTimeSelected: () => { },
     shouldDisableDate: () => { },
-    onDatePickerDismiss: () => { console.log("dismissed")},
+    onDatePickerDismiss: () => { console.log("dismissed")}
   }
 
   // eslint-disable-next-line
@@ -99,26 +99,24 @@ class DateTime extends React.Component {
     this.datePicker.show();
   }
 
-  selectDate = async(date) => {
+  selectDate = (date) => {
     const currentDateTime = moment(this.getDateOrCurrentTime());
     const dateTime = moment(date)
-      .set('hours', currentDateTime.hours()) // fill time unites
-      .set('minutes', currentDateTime.minutes());
 
-		this.props.onChange(moment(this.state.dateTime).toDate());
+		this.props.onChange(moment(date).toDate());
 		this.setState({ dateTime });
 
     // show timepicker
     setTimeout(() => this.timePicker.show(), this.props.timePickerDelay);
   }
 
-  selectTime = async(date) => {
+  selectTime = (date) => {
     const { dateTime } = this.state;
 
     dateTime.hours(date.getHours());
     dateTime.minutes(date.getMinutes());
 
-		this.props.onChange(moment(this.state.dateTime).toDate());
+		this.props.onChange(moment(dateTime).toDate());
 
     this.setState({ dateTime });
   }
