@@ -67,7 +67,7 @@ class DateTime extends React.Component {
     onDateSelected: () => { },
     onTimeSelected: () => { },
     shouldDisableDate: () => { },
-    onDatePickerDismiss: () => { },
+    onDatePickerDismiss: () => { console.log("dismissed")},
   }
 
   // eslint-disable-next-line
@@ -85,15 +85,6 @@ class DateTime extends React.Component {
     * Get current selected date by user
     @returns { Object } moment or vanilla date object
   */
-  getDate = () => {
-    if (!this.state.dateTime) {
-      return null;
-    }
-
-    return this.props.returnMomentDate
-      ? this.state.dateTime
-      : moment(this.state.dateTime).format('YYYY-MM-DDThh:mm:ss');
-  }
 
   getDateOrCurrentTime = () => (this.state.dateTime
     ? moment(this.state.dateTime).toDate()
@@ -103,46 +94,33 @@ class DateTime extends React.Component {
     ? moment(time).toDate()
     : null)
 
-  getDisplayTime = () => {
-    const {dateTime}  = this.state;
-		const format = this.props.format ? this.props.format : defaultProps.format
-    const defaultTime = this.props.showCurrentDateByDefault
-      ? moment().format(this.props.format)
-      : this.props.placeholder || '';
-
-    const displayDateTime = dateTime ? moment(dateTime).format(this.props.format) : defaultTime;
-
-    return displayDateTime
-  }
-
   openDatePicker = (e) => {
     e.preventDefault();
     this.datePicker.show();
   }
 
-  selectDate = (date) => {
+  selectDate = async(date) => {
     const currentDateTime = moment(this.getDateOrCurrentTime());
     const dateTime = moment(date)
       .set('hours', currentDateTime.hours()) // fill time unites
       .set('minutes', currentDateTime.minutes());
 
-    this.setState({ dateTime });
+		this.props.onChange(moment(this.state.dateTime).toDate());
+		this.setState({ dateTime });
 
-    this.props.onDateSelected(this.getDate());
     // show timepicker
     setTimeout(() => this.timePicker.show(), this.props.timePickerDelay);
   }
 
-  selectTime = (date) => {
+  selectTime = async(date) => {
     const { dateTime } = this.state;
 
     dateTime.hours(date.getHours());
     dateTime.minutes(date.getMinutes());
 
-    this.setState({ dateTime });
+		this.props.onChange(moment(this.state.dateTime).toDate());
 
-		this.props.onTimeSelected(this.getDate());
-		this.props.onChange(this.getDate());
+    this.setState({ dateTime });
   }
 
   handleFocus = (event) => {
@@ -187,7 +165,7 @@ class DateTime extends React.Component {
  	          onFocus={this.handleFocus}
  	          className={textFieldClassName}
  	          onClick={this.openDatePicker}
- 	          value={this.getDisplayTime()}
+ 	          value={moment(this.state.dateTime).toDate()}
 						floatingLabelText={this.props.label}
  	          disabled={disabled}
 						required={required}
