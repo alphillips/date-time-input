@@ -67,7 +67,7 @@ class DateTime extends React.Component {
     onDateSelected: () => { },
     onTimeSelected: () => { },
     shouldDisableDate: () => { },
-    onDatePickerDismiss: () => { console.log("dismissed")}
+    onDatePickerDismiss: () => { }
   }
 
   // eslint-disable-next-line
@@ -79,6 +79,16 @@ class DateTime extends React.Component {
     if (prevProps.value !== this.props.value) {
       this.setState({ dateTime: this.getInitialTime() });
     }
+  }
+
+	getDisplayTime = () => {
+    const {dateTime}  = this.state;
+		const format = this.props.format ? this.props.format : defaultProps.format
+    const defaultTime = this.props.showCurrentDateByDefault
+      ? moment().format(this.props.format)
+      : this.props.placeholder || '';
+     const displayDateTime = dateTime ? moment(dateTime).format(this.props.format) : defaultTime;
+     return displayDateTime
   }
 
   /*
@@ -163,7 +173,7 @@ class DateTime extends React.Component {
  	          onFocus={this.handleFocus}
  	          className={textFieldClassName}
  	          onClick={this.openDatePicker}
- 	          value={moment(this.state.dateTime).toDate()}
+ 	          value={this.getDisplayTime()}
 						floatingLabelText={this.props.label}
  	          disabled={disabled}
 						required={required}
