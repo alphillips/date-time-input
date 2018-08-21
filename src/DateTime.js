@@ -3,7 +3,8 @@ import DatePicker from 'material-ui/DatePicker/DatePickerDialog'
 import TimePicker from 'material-ui/TimePicker/TimePickerDialog';
 import moment from 'moment';
 import ClearIcon from 'material-ui/svg-icons/content/clear';
-import { TextField, IconButton } from 'material-ui';
+import { IconButton } from 'material-ui';
+import Input from '@react-ag-components/input'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import './datetime.css'
 
@@ -91,11 +92,11 @@ class DateTime extends React.Component {
 
     return this.props.returnMomentDate
       ? this.state.dateTime
-      : this.state.dateTime.toDate();
+      : moment(this.state.dateTime).format('YYYY-MM-DDThh:mm:ss');
   }
 
   getDateOrCurrentTime = () => (this.state.dateTime
-    ? this.state.dateTime.toDate()
+    ? moment(this.state.dateTime).toDate()
     : new Date())
 
   getDateOrNull = time => (time
@@ -139,8 +140,9 @@ class DateTime extends React.Component {
     dateTime.minutes(date.getMinutes());
 
     this.setState({ dateTime });
-    this.props.onTimeSelected(this.getDate());
-    this.props.onChange(this.getDate());
+
+		this.props.onTimeSelected(this.getDate());
+		this.props.onChange(this.getDate());
   }
 
   handleFocus = (event) => {
@@ -181,14 +183,14 @@ class DateTime extends React.Component {
     return (
 	      <div style={{ ...styles.container, style }} className={ className }>
         <MuiThemeProvider>
-					<TextField
+					<Input
  	          onFocus={this.handleFocus}
  	          className={textFieldClassName}
  	          onClick={this.openDatePicker}
  	          value={this.getDisplayTime()}
 						floatingLabelText={this.props.label}
- 	          style={{ ...styles.textField, ...textFieldStyle }}
  	          disabled={disabled}
+						required={required}
             id={id}
  	          {...other}
  	        />
